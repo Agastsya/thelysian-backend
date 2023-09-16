@@ -1,58 +1,26 @@
 import express from "express";
 import { User } from "../models/user.js";
+import {
+  getAllUsers,
+  getUserID,
+  Register,
+  purgeUser,
+  Login,
+  logout,
+} from "../controllers/userController.js";
+import { isAuthenticated } from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.get("/all", async (req, res) => {
-  try {
-    const users = await User.find({});
+router.get("/all", getAllUsers);
 
-    res.json({
-      success: true,
-      users,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message,
-    });
-  }
-});
+router.get("/:id", isAuthenticated, getUserID);
 
-router.get("/:id", async (req, res) => {
-  try {
-    const userid = req.params.id;
-    const user = await User.findById(userid);
-    res.json({
-      success: true,
-      message: "User Account Exists",
-      user,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-    });
-  }
-});
+router.post("/new", Register);
 
-router.post("/new", async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
-    const user = await User.create({
-      name,
-      email,
-      password,
-    });
-    res.cookie("status", "temp").json({
-      success: true,
-      message: "Registered Successfully",
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Failed to register user",
-      error: error.message,
-    });
-  }
-});
+router.post("/login", Login);
+
+router.post("/logout", isAuthenticated, logout);
+
+router.delete("/purgeuser/:id", purgeUser);
 export default router;
