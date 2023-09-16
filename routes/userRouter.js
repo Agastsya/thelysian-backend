@@ -6,17 +6,21 @@ import {
   Register,
   purgeUser,
   Login,
+  logout,
 } from "../controllers/userController.js";
+import { isAuthenticated } from "../middlewares/auth.js";
 
 const router = express.Router();
 
 router.get("/all", getAllUsers);
 
-router.get("/:id", getUserID);
+router.get("/:id", isAuthenticated, getUserID);
 
 router.post("/new", Register);
 
 router.post("/login", Login);
+
+router.post("/logout", isAuthenticated, logout);
 
 router.delete("/purgeuser/:id", purgeUser);
 export default router;

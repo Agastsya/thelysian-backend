@@ -6,21 +6,10 @@ import { sendCookie } from "../utils/features.js";
 //Gets User ID
 export const getUserID = async (req, res) => {
   try {
-    const { token } = req.cookies;
-
-    if (!token)
-      return res.status(404).json({
-        success: false,
-        message: "Log In First",
-      });
-
-    const decoded = jwt.decode(token, process.env.JWT_SECRET);
-
-    const user = await User.findById(decoded._id);
     res.json({
       success: true,
       message: "User Account Exists",
-      user,
+      user: req.user,
     });
   } catch (error) {
     res.status(500).json({
@@ -30,6 +19,7 @@ export const getUserID = async (req, res) => {
   }
 };
 
+//Gets all users
 export const getAllUsers = async (req, res) => {
   try {
     const users = await User.find({});
@@ -97,6 +87,21 @@ export const Login = async (req, res) => {
       success: false,
       message: "Failed to register user",
       error: error.message,
+    });
+  }
+};
+
+//lOGOUT
+export const logout = async (req, res) => {
+  try {
+    res.status(200).clearCookie("token").json({
+      success: true,
+      message: "Logged Out",
+    });
+  } catch (error) {
+    res.status(401).json({
+      success: false,
+      message: error.message,
     });
   }
 };
