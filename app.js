@@ -27,7 +27,7 @@ config({
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send(process.env.FRONTEND_URL);
 });
 
 ConnectDB();
