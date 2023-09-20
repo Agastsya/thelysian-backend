@@ -22,7 +22,11 @@
     "nodemon": "^3.0.1",
     "react-hot-toast": "^2.4.1"
   },
+<<<<<<< HEAD
   "engines": {
+=======
+    "engines": {
+>>>>>>> 4fa7401841930e16662991ef19fed36b60b40b18
     "node": ">=14.20.1"
   },
   "type": "module"

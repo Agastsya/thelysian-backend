@@ -4,6 +4,10 @@ import { User } from "./models/user.js";
 import userRouter from "./routes/userRouter.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4fa7401841930e16662991ef19fed36b60b40b18
 
 import express from "express";
 const app = express();
@@ -20,6 +24,13 @@ app.use(
   })
 );
 
+app.use(
+  cors({
+    origin: [process.env.FRONTEND_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use("/api/v1/user", userRouter);
 
 config({
