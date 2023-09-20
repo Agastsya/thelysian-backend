@@ -1,13 +1,13 @@
 {
   "name": "thelysianbackend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Your project description here",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "author": "",
+  "author": "Your Name",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -22,11 +22,7 @@
     "nodemon": "^3.0.1",
     "react-hot-toast": "^2.4.1"
   },
-<<<<<<< HEAD
   "engines": {
-=======
-    "engines": {
->>>>>>> 4fa7401841930e16662991ef19fed36b60b40b18
     "node": ">=14.20.1"
   },
   "type": "module"
