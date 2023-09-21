@@ -106,6 +106,18 @@ export const logout = async (req, res) => {
   }
 };
 
+//get my profile
+export const getMyProfile = async (req, res) => {
+  try {
+    res.status(200).json({
+      success: true,
+      user: req.user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const purgeUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);

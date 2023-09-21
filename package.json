@@ -10,8 +10,10 @@
   "author": "Your Name",
   "license": "ISC",
   "dependencies": {
+    "add": "^2.0.6",
     "bcrypt": "^5.1.1",
     "colors": "^1.4.0",
+    "commit": "^0.0.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",

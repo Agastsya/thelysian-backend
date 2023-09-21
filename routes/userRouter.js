@@ -7,6 +7,7 @@ import {
   purgeUser,
   Login,
   logout,
+  getMyProfile,
 } from "../controllers/userController.js";
 import { isAuthenticated } from "../middlewares/auth.js";
 
@@ -21,6 +22,8 @@ router.post("/new", Register);
 router.post("/login", Login);
 
 router.post("/logout", isAuthenticated, logout);
+
+router.get("/me", isAuthenticated, getMyProfile);
 
 router.delete("/purgeuser/:id", purgeUser);
 export default router;
